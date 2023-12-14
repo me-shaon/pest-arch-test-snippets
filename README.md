@@ -1,5 +1,5 @@
 # PEST 'Architecture test' code snippets
-Useful 'Architecture test' code snippets for [PEST](https://pestphp.com/) which you can use in your Laravel projects.
+Useful ['Architecture test'](https://pestphp.com/docs/arch-testing) code snippets for [PEST](https://pestphp.com/) which you can use in your Laravel projects.
 
 PR and ideas are welcome! 🙌
 
@@ -8,6 +8,11 @@ PR and ideas are welcome! 🙌
 - [Do not leave debug statements](#do-not-leave-debug-statements)
 - [Do not use `env()` outside of config files](#do-not-use-env-outside-of-config-files)
 - [Use strict type checking](#use-strict-type-checking)
+- [Invokable classes should have __invoke method]()
+- [Classes should contain a specific method]()
+- [Classes should implement an interface]()
+- [Classes should have proper suffix]()
+- [Ensure cross domain boundaries are respected]()
 
 ---
 
@@ -50,4 +55,66 @@ To ensure that, we can add the following test:
 arch('Use string type check')
     ->expect('App')
     ->toUseStrictTypes();
+```
+
+### Invokable classes should have __invoke method
+
+Sometimes we want to make sure that some classes should be invokable. For example, some developers prefer that `Action` classes should be invokable. 
+
+To ensure that, we can add the following test:
+
+```php
+arch('Action classes should be invokable')
+    ->expect('App\Actions')
+    ->toBeInvokable();
+```
+
+### Classes should contain a specific method
+
+A lot of Laravel developers prefer to use[Laravel actions](https://laravelactions.com/). This classes must have a `handle` method. Also, [Laravel Jobs] should have a `handle` method as well.
+
+Using the following test, we can make sure that these classes must have the `handle` method implemented:
+
+```php
+arch('Job classes should have handle method')
+    ->expect('App\Jobs')
+    ->toHaveMethod('handle');
+```
+
+### Classes should implement an interface
+
+When implementing the Repository pattern, it's a common practice to have a `RepositoryInterface` and all the Repository classes implement it.
+
+How to make sure no Repository classes missed this requirement? It's pretty easy:
+
+```php
+arch('app')
+    ->expect('App\Repositories')
+    ->toImplement('App\Repositories\RepositoryInterface');
+```
+
+### Classes should have proper suffix
+
+Service pattern is also a popular choice by the Laravel developers. In this case, we might want to make sure that all the 'Service' classes have the 'Service' suffix in it.
+
+To confirm this, we can add this test:
+
+```php
+arch('Services classes should have proper suffix')
+    ->expect('App\Services')
+    ->toHaveSuffix('Service');
+```
+
+### Ensure cross domain boundaries are respected
+
+When implementing 'Domains' or 'Modules' in our code, we might want to make sure that one domains/modules code is not directly used in other domains/modules. 
+This will help us to keep the domains/modules independent of each other. 
+
+For example, let's say we have two Modules in our project called `RideSharing` and `FoodDelivery`. We want to make sure that one modules code is not used in other module.
+To ensure this constraint, we can just add this:
+
+```php
+arch('Modules should be independent')
+    ->expect('Modules\RideSharing')
+    ->not->toBeUsed('Modules\FoodDelivery');
 ```
