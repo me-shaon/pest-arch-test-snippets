@@ -8,11 +8,11 @@ PR and ideas are welcome! 🙌
 - [Do not leave debug statements](#do-not-leave-debug-statements)
 - [Do not use `env()` outside of config files](#do-not-use-env-outside-of-config-files)
 - [Use strict type checking](#use-strict-type-checking)
-- [Invokable classes should have __invoke method]()
-- [Classes should contain a specific method]()
-- [Classes should implement an interface]()
-- [Classes should have proper suffix]()
-- [Ensure cross domain boundaries are respected]()
+- [Invokable classes should have __invoke method](#invokable-classes-should-have-__invoke-method)
+- [Classes should contain a specific method](#classes-should-contain-a-specific-method)
+- [Classes should implement an interface](#classes-should-implement-an-interface)
+- [Classes should have proper suffix](#classes-should-have-proper-suffix)
+- [Ensure cross domain boundaries are respected](#ensure-cross-domain-boundaries-are-respected)
 
 ---
 
