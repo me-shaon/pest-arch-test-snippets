@@ -105,7 +105,14 @@ arch('Services classes should have proper suffix')
     ->toHaveSuffix('Service');
 ```
 
-### Ensure cross domain boundaries are respected
+We do the same for 'Controller' classes, right?
+```php
+arch('Services classes should have proper suffix')
+    ->expect('App\Controllers')
+    ->toHaveSuffix('Controller');
+```
+
+### Ensure cross-domain boundaries are respected
 
 When implementing 'Domains' or 'Modules' in our code, we might want to make sure that one domains/modules code is not directly used in other domains/modules. 
 This will help us to keep the domains/modules independent of each other. 
