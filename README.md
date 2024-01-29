@@ -13,6 +13,7 @@ PR and ideas are welcome! 🙌
 - [Classes should implement an interface](#classes-should-implement-an-interface)
 - [Classes should have proper suffix](#classes-should-have-proper-suffix)
 - [Ensure cross domain boundaries are respected](#ensure-cross-domain-boundaries-are-respected)
+- [Do not access session data in Async jobs](#do-not-access-session-data-in-async-jobs)
 
 ---
 
@@ -124,4 +125,15 @@ To ensure this constraint, we can just add this:
 arch('Modules should be independent')
     ->expect('Modules\RideSharing')
     ->not->toBeUsed('Modules\FoodDelivery');
+```
+### Do not access session data in Async jobs
+In asynchronous jobs, session data is not available. Because we process asynchronous jobs with Queue workers later. 
+This is  why it's a good practice to avoid using helpers like, `session`, `request`, `auth` etc. in our asynchronous jobs. 
+
+To ensure this constraint, we can just add this:
+
+```php
+arch('Do not access session data in Async jobs')
+    ->expect(['session', 'auth', 'request'])
+    ->each->not->toBeUsedIn('App\Jobs');
 ```
