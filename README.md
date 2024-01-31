@@ -134,6 +134,14 @@ To ensure this constraint, we can just add this:
 
 ```php
 arch('Do not access session data in Async jobs')
-    ->expect(['session', 'auth', 'request'])
+    ->expect([
+        'session',
+        'auth',
+        'request',
+        'Illuminate\Support\Facades\Auth',
+        'Illuminate\Support\Facades\Session',
+        'Illuminate\Http\Request',
+        'Illuminate\Support\Facades\Request'
+    ])
     ->each->not->toBeUsedIn('App\Jobs');
 ```
