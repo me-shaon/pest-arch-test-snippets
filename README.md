@@ -108,7 +108,7 @@ arch('Services classes should have proper suffix')
 
 We do the same for 'Controller' classes, right?
 ```php
-arch('Services classes should have proper suffix')
+arch('Controller classes should have proper suffix')
     ->expect('App\Controllers')
     ->toHaveSuffix('Controller');
 ```
