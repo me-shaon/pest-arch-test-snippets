@@ -53,7 +53,7 @@ We might prefer to use [Strict type checking](https://ashallendesign.co.uk/blog/
 To ensure that, we can add the following test:
 
 ```php
-arch('Use string type check')
+arch('Use strict type check')
     ->expect('App')
     ->toUseStrictTypes();
 ```
