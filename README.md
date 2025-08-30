@@ -25,10 +25,11 @@ But now we can avoid that by adding the following test.
 
 ```php
 arch('Do not leave debug statements')
-    ->expect(['dd', 'dump', 'var_dump'])
+    ->expect(['dd', 'ddd', 'die', 'dump', 'sleep', 'ds'])
     ->not->toBeUsed();
 ```
-
+Note: 
+`ds` method is used in [Laradumps](https://github.com/laradumps/laradumps) package.
 If you are using [Ray](https://myray.app/) you should add `ray` to the expectation list as well.
 
 
