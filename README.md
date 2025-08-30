@@ -10,6 +10,7 @@ PR and ideas are welcome! 🙌
 - [Use strict type checking](#use-strict-type-checking)
 - [Invokable classes should have __invoke method](#invokable-classes-should-have-__invoke-method)
 - [Classes should contain a specific method](#classes-should-contain-a-specific-method)
+- [Interfaces should be Interface](#Interfaces-should-be-interface)
 - [Classes should implement an interface](#classes-should-implement-an-interface)
 - [Classes should have proper suffix](#classes-should-have-proper-suffix)
 - [Ensure cross domain boundaries are respected](#ensure-cross-domain-boundaries-are-respected)
@@ -81,6 +82,16 @@ Using the following test, we can make sure that these classes must have the `han
 arch('Job classes should have handle method')
     ->expect('App\Jobs')
     ->toHaveMethod('handle');
+```
+
+### Interfaces should be Interface
+
+You may want to write a test to assert that your project's `App\Interfaces` namespace only contains interfaces. To do this, you may want to write a test like this:
+
+```php
+arch('app')
+    ->expect('App\Interfaces')
+    ->toBeInterfaces();;
 ```
 
 ### Classes should implement an interface
